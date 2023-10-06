@@ -1,50 +1,71 @@
-import { StatusBar } from 'expo-status-bar';
-import React,{useState} from 'react';
-import { Alert, StyleSheet, Text, TouchableHighlight, View, Button, ScrollView, TextInput } from 'react-native';
+import React from 'react';
+import {StyleSheet, Text,View, Button,TextInput, FlatList } from 'react-native';
 
 class App extends React.Component
 {
   state={
-    buttonClickCounter:0,
-    someText:'Sample text',
+    data:[],
+    newLine:'',
+    foundData:[],
+    searchLine:''
+  }
+  
+  handleNewLine=(text)=>{
+    this.setState({newLine:text});
+  }
+  
+  addLine=()=>{
+    this.setState(prevState=>({data:[...prevState.data,this.state.newLine]}));
   }
 
-  updateCounter(){
-    Count=this.state.buttonClickCounter;
-    this.setState({buttonClickCounter:Count+1});
+  handleFilterTasks=(text)=>{
+    this.setState({searchLine:text});
   }
 
-  dropCounter(){
-    this.setState({buttonClickCounter:0})
+  filterTasks=()=>{
+    this.setState({foundData:this.state.data.filter((task)=>task.includes(this.state.searchLine))});
   }
 
-  onButtonClick(msg){
-    alert('Current inputed text: '+msg)
+  deleteLines=()=>{
+    for (let i=0;i<this.state.foundData.length;i++)
+    {
+      var array=[...this.state.data];
+      var foundArr=[...this.state.foundData];
+      var index=array.indexOf(this.state.foundData[i]);
+      if(index!==-1){
+        array.splice(index,1);
+        foundArr.splice(foundArr.length-1,1);
+        this.setState({data:array});
+        this.setState({foundData:foundArr});
+      }
+    }
   }
 
   render(){
     return(
       <View  style={styles.container}>     
-        <Text style={styles.headText}>Welcome to the most useless clicker!</Text>
-          <View style={styles.mainContainer}>
-          <View style={styles.innerContainer}>
-            <Text>You clicked button {this.state.buttonClickCounter} times</Text>
-          </View>
-            <View style={styles.button1}><Button onPress={()=>this.updateCounter()} title='Click me!'></Button></View>
-            <View style={styles.button1}><Button onPress={()=>this.dropCounter()} title='Drop value!'></Button></View>
-          </View>
-
-
-        <ScrollView style={styles.scrollViewStyle}>
-          <Text style={{color:'red'}}>Inputed text here:</Text>
-          <TextInput style={styles.input} multiline={true} value={this.state.someText} onChangeText={newText=>this.setState({someText:newText})}></TextInput>
-          <Text style={{color:'red'}}>Inputed text is:</Text>
-          <Text style={styles.input}>{this.state.someText}</Text>
-          <Button title='Click me!' onPress={()=>this.onButtonClick(this.state.someText)}></Button>
-        </ScrollView>
+      <View style={styles.mainContainer}>
+      <TextInput style={styles.input} onChangeText={this.handleFilterTasks}/>
+      <Button title='Filter tasks' onPress={this.filterTasks}/>
+      <FlatList
+          data={this.state.foundData}
+          renderItem={({item})=><Text>
+            {item}    
+          </Text>}
+      />
+      <Text style={styles.headText}>Task "{this.state.foundData[this.state.foundData.length-1]}" will be deleted</Text>
+      <Button title='Delete filtered tasks' onPress={this.deleteLines}/>
+      <FlatList
+          data={this.state.data}
+          renderItem={({item})=><Text>
+            {item}    
+          </Text>}
+      />
+      <TextInput style={styles.input} onChangeText={this.handleNewLine}/>
+      <Button title='Add task' onPress={this.addLine}/>
       </View>
-    )
-  }
+      </View>
+    )}
 }
 
 const styles = StyleSheet.create({
@@ -56,27 +77,16 @@ const styles = StyleSheet.create({
     color:'red',
     fontWeight:'bold',
     position:'relative',
-    top:'10%',
-    left:'20%',
+    left:'33%',
     width:'100%',
   },
-  scrollViewStyle:{
-    backgroundColor: '#ffffff',
-    width:'70%',
-    height:'10%',
-    borderRadius:10,
-    position:'absolute',
-    top:'60%'
-  },
   mainContainer: {
-    flex: 1,
-    backgroundColor: '#88d1f1',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection:'row',
-    flexWrap:'wrap',
+    backgroundColor:'white',
+    justifyContent:'center',
     position:'relative',
-    top:'50%'
+    top:'0%',
+    width:'100%',
+    height:'70%'
   },
   container: {
     flex: 1,
