@@ -39,6 +39,7 @@ const App=()=>{
 
     return(
         <SafeAreaView style={styles.container}>
+            <View style={styles.niceContainer}></View>
             <View style={styles.greeting}>
                     <Animated.Text style={[styles.h2, {position:'relative',top:this.moveValue1}]}>Welocome to</Animated.Text>
                     <Animated.Text style={[styles.h1, {position:'relative',left:this.moveValue2}]}>LR8 App</Animated.Text>
@@ -75,6 +76,7 @@ const styles=StyleSheet.create({
         flex:1,
         alignItems:'center',
         justifyContent:'center',
+        backgroundColor:'#CCC'
     },
     scrollContainer:{
         height:300,
@@ -131,6 +133,15 @@ const styles=StyleSheet.create({
     h3:{
         fontSize:15
     },
+    niceContainer:{
+        width:'95%',
+        height:'90%',
+        position:'absolute',
+        borderWidth:1,
+        borderColor:'black',
+        borderRadius:25,
+        backgroundColor:'white'
+    }
 });
 
 export default App;
