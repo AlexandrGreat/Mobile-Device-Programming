@@ -25,6 +25,7 @@ function ProfileScreen({route,navigation}){
         <Text style={styles.text1}>Phone number: 223322223322</Text>
         <Text style={[styles.text1,{position:'relative',top:'20%'}]}>Your info: Just a student that made this app in demonstration purpose</Text>
       </View>  
+      <View style={{position:'absolute',bottom:'5%',left:'30%',width:'40%'}}><Button title="contacts" onPress={()=>navigation.navigate('Contacts')}/></View>
     </View>
     );
 }
