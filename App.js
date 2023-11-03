@@ -8,7 +8,7 @@ function ContactsScreen({route,navigation}){
     return(
       <View style={{height:'100%',padding:10}}>
         <ScrollView>
-          {contacts.map((data,index)=>{return(<View style={{marginBottom:10, backgroundColor:'#CCC'}}><Text style={styles.text1}>{data.name}: {data.phoneNumber}</Text><Button title='Call' onPress={()=>navigation.navigate('Call',{name:data.name,phoneNumber:data.phoneNumber})} /></View>)})}
+          {contacts.map((data,index)=>{return(<View style={{marginBottom:10, backgroundColor:'#CCC',borderRadius:10}}><Text style={styles.text1}>{data.name}: {data.phoneNumber}</Text><Button title='Call' onPress={()=>navigation.navigate('Call',{name:data.name,phoneNumber:data.phoneNumber})} /></View>)})}
         </ScrollView>
         <Button title="Go to profile" style={{position:'absolute',bottom:'0%'}} onPress={()=>navigation.navigate('Profile')}/>
       </View>
