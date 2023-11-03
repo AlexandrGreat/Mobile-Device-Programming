@@ -6,9 +6,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 function ContactsScreen({route,navigation}){
   const [contacts,setContacts]=React.useState([{name:"Alex",phoneNumber:"123456789"},{name:"Mike",phoneNumber:"987654321"},{name:"Pizza delivery",phoneNumber:"123456789"},{name:"Doctor",phoneNumber:"987654321"},{name:"Friend",phoneNumber:"123456789"},{name:"Work",phoneNumber:"987654321"},{name:"Bank",phoneNumber:"123456789"},{name:"Jane",phoneNumber:"987654321"},{name:"Tom",phoneNumber:"123456789"},{name:"George",phoneNumber:"987654321"},{name:"William",phoneNumber:"123456789"},{name:"Carl",phoneNumber:"987654321"},{name:"Isaac",phoneNumber:"123456789"},{name:"Hordon",phoneNumber:"987654321"}]);
     return(
-      <View style={{height:'100%'}}>
+      <View style={{height:'100%',padding:10}}>
         <ScrollView>
-          {contacts.map((data,index)=>{return(<View><Text style={styles.text1}>{data.name}: {data.phoneNumber}</Text><Button title='Call' onPress={()=>navigation.navigate('Call',{name:data.name,phoneNumber:data.phoneNumber})} /></View>)})}
+          {contacts.map((data,index)=>{return(<View style={{marginBottom:10, backgroundColor:'#CCC'}}><Text style={styles.text1}>{data.name}: {data.phoneNumber}</Text><Button title='Call' onPress={()=>navigation.navigate('Call',{name:data.name,phoneNumber:data.phoneNumber})} /></View>)})}
         </ScrollView>
         <Button title="Go to profile" style={{position:'absolute',bottom:'0%'}} onPress={()=>navigation.navigate('Profile')}/>
       </View>
