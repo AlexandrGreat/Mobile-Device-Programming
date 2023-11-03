@@ -1,7 +1,6 @@
 import React from "react";
 import { View,Text,StyleSheet, TextInput,ScrollView, Button, TouchableHighlight, SafeAreaView } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 function ContactsScreen({route,navigation}){
@@ -48,7 +47,6 @@ function CallScreen({route,navigation}){
     );
 }
 
-const Tab=createBottomTabNavigator();
 const Stack=createNativeStackNavigator();
 
 export default function App(){
