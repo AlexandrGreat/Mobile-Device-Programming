@@ -35,6 +35,10 @@ class Items extends React.Component{
         this.props.dispatchAddItem(this.state)
     }
 
+    handleRemove=()=>{
+        this.props.dispatchRemoveAll()
+    }
+
     removeItem=(item)=>{
         this.props.dispatchRemoveItem(item)
     }
@@ -52,6 +56,7 @@ class Items extends React.Component{
                             <Text onPress={()=>this.removeItem(item)}>Remove</Text>
                         </View>
                     ))}
+                    <Button title="remove all" onPress={this.handleRemove}/>
                     <Button title="BUY!" onPress={this.handleBuy}/>
                 </ScrollView>
 
