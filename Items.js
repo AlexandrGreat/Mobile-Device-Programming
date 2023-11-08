@@ -63,8 +63,8 @@ class Items extends React.Component{
 
                 <View style={styles.inputContainer}>
                 <ScrollView>
-                    {this.productList.map((data)=>{return(<View style={{marginBottom:10, backgroundColor:'#CCC',borderRadius:10}}>
-                    <Text>{data.name}</Text>
+                    {this.productList.map((data)=>{return(<View style={{marginBottom:10, backgroundColor:'#ededed',borderRadius:10}}>
+                    <Text>{data.name} : {data.count}</Text>
                     <Button title='To cart!' onPress={()=>{
                     this.updateInput(data.name,data.count); if(this.state.name!=='') this.handleSubmit();}}/>
                     </View>)})}
