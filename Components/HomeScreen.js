@@ -82,13 +82,6 @@ const HomeScreen=()=>{
     const getTotalData=async(country,category)=>{
         const response=await fetch(`https://newsapi.org/v2/top-headlines?country=${country}&apiKey=d8d62263406c4a31b8ee04813aadcdb3&category=${category}`);
         const data=await response.json();
-        console.log("REQUEST FOR: " +country+" "+category)
-        setData(data.articles);
-    }
-
-    const getCountryData=async(country,category)=>{
-        const response=await fetch(`https://newsapi.org/v2/top-headlines?country=${country}&apiKey=d8d62263406c4a31b8ee04813aadcdb3&category=${category}`);
-        const data=await response.json();
         setData(data.articles);
     }
 
